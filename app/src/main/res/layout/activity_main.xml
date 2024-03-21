@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="giris"
     tools:context=".MainActivity">
 
     <EditText
@@ -12,11 +13,11 @@
         android:layout_height="53dp"
         android:layout_marginBottom="331dp"
         android:ems="10"
+        android:hint="phone number"
         android:inputType="phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
@@ -50,23 +51,35 @@
         android:layout_height="49dp"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="************"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FE0303"
+        android:text="Giriş"
+        android:textColor="#FFFFFF"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="460dp" />
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="73dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPhone3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/logo"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/unnamed" />
+        tools:layout_editor_absoluteX="0dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="569dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
