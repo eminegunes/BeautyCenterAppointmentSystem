@@ -1,16 +1,23 @@
 package com.example.myapplication
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import android.view.View
 import com.example.myapplication.databinding.ActivityGirisBinding
 
-class GirisActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityGirisBinding
+private  lateinit var binding:ActivityGirisBinding
+class giris : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGirisBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        val view = binding.root.also {
+            setContentView(it)
+        }
 
     }
+
+    fun next(view: View){
+
+    }
+
 }
