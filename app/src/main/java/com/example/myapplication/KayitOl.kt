@@ -1,16 +1,25 @@
-package com.example.myapplication
-
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import com.example.myapplication.databinding.ActivityKayitOlBinding
-import com.example.myapplication.databinding.ActivityMainBinding
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.R
 
-class KayitOl : AppCompatActivity() {
-    private lateinit var binding: ActivityKayitOlBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
+class KayitOlActivity : AppCompatActivity() {
+    private lateinit var loginTextView: TextView
+     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityKayitOlBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(R.layout.activity_kayit_ol)
+
+        // Giriş sayfasına geri dönme
+         val registerButton = findViewById<Button>(R.id.registerButton)
+         loginTextView.setOnClickListener {
+            val intent = Intent(this, GirisActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Diğer kayıt işlemleri...
     }
+
+    // Diğer kayıt işlemleri...
 }
