@@ -13,21 +13,7 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".KayitOl"
-            android:exported="false" />
-        <activity
-            android:name=".kayitOl"
-            android:exported="false" />
-        <activity
-            android:name=".GirisActivity"
-            android:exported="false" />
-        <activity
-            android:name=".girisactivity"
-            android:exported="false"
-            android:label="@string/title_activity_girisactivity"
-            android:theme="@style/Theme.MyApplication" />
-        <activity
-            android:name=".giris"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

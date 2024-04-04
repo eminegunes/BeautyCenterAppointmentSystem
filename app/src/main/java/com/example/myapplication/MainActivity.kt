@@ -1,11 +1,11 @@
+package com.example.myapplication
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.R
 
 //Kullanıcı sınıfı
-class GirisActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var loginTextView: TextView
 
