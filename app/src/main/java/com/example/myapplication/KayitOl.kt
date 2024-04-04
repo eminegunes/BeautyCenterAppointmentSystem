@@ -5,12 +5,17 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
+import com.example.myapplication.databinding.ActivityKayitOlBinding
+import com.example.myapplication.databinding.ActivityMainBinding
 
 class KayitOlActivity : AppCompatActivity() {
+    lateinit var binding: ActivityKayitOlBinding
     private lateinit var loginTextView: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_kayit_ol)
+        binding= ActivityKayitOlBinding.inflate(layoutInflater)
+        var kayitOl=binding.root
+        setContentView(kayitOl)
 
         // Giriş sayfasına geri dönme
         val registerButton = findViewById<Button>(R.id.registerButton)
@@ -18,9 +23,5 @@ class KayitOlActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
-        // Diğer kayıt işlemleri...
     }
-
-    // Diğer kayıt işlemleri...
 }
