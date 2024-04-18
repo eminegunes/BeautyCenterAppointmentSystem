@@ -13,7 +13,7 @@
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/usernameEditText"
+        android:layout_below="@id/editTextEmail"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="14dp"
@@ -22,46 +22,38 @@
         android:padding="16dp" />
 
     <EditText
-        android:id="@+id/usernameEditText"
+        android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginTop="299dp"
         android:layout_marginEnd="14dp"
-        android:hint="Kullanıcı Adı"
-        android:padding="16dp" />
-
-    <TextView
-        android:id="@+id/registerTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/loginButton"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="130dp"
-        android:text="Hesabınız yok mu?"
-        android:textColor="@android:color/darker_gray" />
+        android:hint="E-mail"
+        android:padding="16dp"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        />
 
     <Button
         android:id="@+id/buttonkayitol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/registerTextView"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/passwordEditText"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="130dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="5dp"
         android:backgroundTint="#FE0303"
         android:text="Kaydolun" />
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
         android:layout_below="@id/passwordEditText"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="14dp"
+        android:layout_marginEnd="210dp"
         android:backgroundTint="#FE0303"
         android:text="Giriş Yap" />
 

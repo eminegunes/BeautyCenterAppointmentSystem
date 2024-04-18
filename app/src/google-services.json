@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "654182933158",
-    "project_id": "beautycenterappointment",
-    "storage_bucket": "beautycenterappointment.appspot.com"
+    "project_number": "174801002992",
+    "project_id": "beautycenterproject-88dd8",
+    "storage_bucket": "beautycenterproject-88dd8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:654182933158:android:4a25c1e9d15fc4eadd0a67",
+        "mobilesdk_app_id": "1:174801002992:android:5fd5f19c6248ce75b8fd35",
         "android_client_info": {
           "package_name": "com.example.myapplication"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCaSPXLfc5rwvDWucR3Kmz6fhOUnGSSexw"
+          "current_key": "AIzaSyD5VCj3FQ_MCiWRCHQ7mX3JDZMTd1uSo3c"
         }
       ],
       "services": {
