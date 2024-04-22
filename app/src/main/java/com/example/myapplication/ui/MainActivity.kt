@@ -1,20 +1,18 @@
-package com.example.myapplication
-import android.content.Context
+package com.example.myapplication.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.ui.authentication.component.Secenekler
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.google.firebase.Firebase
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.analytics.analytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import dagger.hilt.android.AndroidEntryPoint
 
 //Kullanıcı sınıfı
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private lateinit var auth : FirebaseAuth
@@ -35,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "E mail ve şifrenizi giriniz!", Toast.LENGTH_LONG).show()
         } else {
             auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
-                val intent = Intent(this@MainActivity, secenekler::class.java)
+                val intent = Intent(this@MainActivity, Secenekler::class.java)
                 startActivity(intent)
                 finish()
             }.addOnFailureListener {
@@ -50,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "E mail ve şifrenizi giriniz!", Toast.LENGTH_LONG).show()
             } else {
                 auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
-                    val intent = Intent(this@MainActivity, secenekler::class.java)
+                    val intent = Intent(this@MainActivity, Secenekler::class.java)
                     startActivity(intent)
                     finish()
                 }.addOnFailureListener {
