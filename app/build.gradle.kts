@@ -4,6 +4,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
+    id("kotlin-parcelize")
+
 }
 
 android {
@@ -89,8 +91,19 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.51")
 
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
-
     implementation("com.google.firebase:firebase-auth")
+
+    implementation ("com.google.firebase:firebase-database-ktx:21.0.0")
+    implementation ("com.google.firebase:firebase-firestore-ktx:25.0.0")
+    implementation ("com.google.firebase:firebase-storage-ktx:21.0.0")
+    implementation("com.google.firebase:firebase-firestore")
+
+
+    //Gson
+    implementation ("com.google.code.gson:gson:2.10.1")
+
+    // Hawk
+    implementation("com.orhanobut:hawk:2.0.1")
 
 
 
