@@ -20,7 +20,6 @@ import com.example.myapplication.ui.authentication.component.BottomComponent
 import com.example.myapplication.ui.authentication.component.CheckboxComponent
 import com.example.myapplication.ui.authentication.component.HeadingTextComponent
 import com.example.myapplication.ui.authentication.component.MyTextFieldComponent
-import com.example.myapplication.ui.authentication.component.NormalTextComponent
 import com.example.myapplication.ui.authentication.component.PasswordTextFieldComponent
 
 

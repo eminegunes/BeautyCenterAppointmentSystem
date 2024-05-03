@@ -20,7 +20,6 @@ import com.example.myapplication.ui.authentication.component.HeadingTextComponen
 import com.example.myapplication.ui.authentication.component.MyTextFieldComponent
 import com.example.myapplication.ui.authentication.component.PasswordTextFieldComponent
 
-
 @Composable
 fun LoginScreen(navController: NavHostController) {
     Surface(

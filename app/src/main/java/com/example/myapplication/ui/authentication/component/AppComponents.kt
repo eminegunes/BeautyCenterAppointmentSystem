@@ -52,7 +52,6 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.myapplication.R
 import com.example.myapplication.ui.theme.AccentColor
 import com.example.myapplication.ui.theme.BgColor
 import com.example.myapplication.ui.theme.GrayColor
