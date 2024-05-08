@@ -4,7 +4,6 @@ import com.example.myapplication.domain.repository.AuthRepository
 import com.example.myapplication.domain.repository.AuthRepositoryImpl
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.StorageReference
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
