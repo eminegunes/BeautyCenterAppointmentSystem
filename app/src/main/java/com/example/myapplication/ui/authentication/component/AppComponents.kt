@@ -51,6 +51,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.myapplication.ui.theme.AccentColor
 import com.example.myapplication.ui.theme.BgColor
@@ -96,17 +97,21 @@ fun HeadingTextComponent(value: String) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyTextFieldComponent(labelValue: String, icon: ImageVector) {
-    var textValue by remember {
-        mutableStateOf("")
-    }
+fun MyTextFieldComponent(
+    labelValue: String,
+    textValue: String,
+    icon: ImageVector,
+    onValueChange: (String) -> Unit,
+
+) {
+
     OutlinedTextField(
         label = {
             Text(text = labelValue)
         },
         value = textValue,
         onValueChange = {
-            textValue = it
+            onValueChange(it)
         },
         colors = TextFieldDefaults.outlinedTextFieldColors(
             focusedBorderColor = AccentColor,
@@ -129,11 +134,12 @@ fun MyTextFieldComponent(labelValue: String, icon: ImageVector) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PasswordTextFieldComponent(labelValue: String, icon: ImageVector) {
-    var password by remember {
-        mutableStateOf("")
-    }
-
+fun PasswordTextFieldComponent(
+    labelValue: String,
+    textValue: String,
+    icon: ImageVector,
+    onValueChange: (String) -> Unit,
+) {
     var isPasswordVisible by remember {
         mutableStateOf(false)
     }
@@ -141,9 +147,9 @@ fun PasswordTextFieldComponent(labelValue: String, icon: ImageVector) {
         label = {
             Text(text = labelValue)
         },
-        value = password,
+        value = textValue,
         onValueChange = {
-            password = it
+            onValueChange(it)
         },
         colors = TextFieldDefaults.outlinedTextFieldColors(
             focusedBorderColor = AccentColor,
@@ -163,7 +169,7 @@ fun PasswordTextFieldComponent(labelValue: String, icon: ImageVector) {
         trailingIcon = {
             val iconImage =
                 if (isPasswordVisible) Icons.Outlined.Warning else Icons.Outlined.AccountCircle
-            val description = if (isPasswordVisible) "Show Password" else "Hide Password"
+            val description = if (isPasswordVisible) "Görünür" else "Görünmez"
             IconButton(onClick = {
                 isPasswordVisible = !isPasswordVisible
             }) {
@@ -237,7 +243,8 @@ fun BottomComponent(
     textQuery: String,
     textClickable: String,
     action: String,
-    navController: NavHostController
+    navController: NavController,
+    onButtonClick: () -> Unit
 ) {
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -248,9 +255,7 @@ fun BottomComponent(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Button(
-                onClick = {
-
-                },
+                onClick = onButtonClick,
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(Color.Transparent)
             ) {
@@ -292,7 +297,7 @@ fun BottomComponent(
 fun AccountQueryComponent(
     textQuery: String,
     textClickable: String,
-    navController: NavHostController
+    navController: NavController
 ) {
     val annonatedString = buildAnnotatedString {
         withStyle(style = SpanStyle(color = TextColor, fontSize = 15.sp)) {
