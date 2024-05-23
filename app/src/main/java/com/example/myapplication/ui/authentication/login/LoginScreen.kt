@@ -57,6 +57,7 @@ fun LoginScreen(
 
     Column(
         modifier = Modifier.fillMaxSize()
+            .padding(horizontal = 10.dp, vertical = 10.dp)
     ) {
         Column {
             HeadingTextComponent(value = "Hoş Geldiniz")
