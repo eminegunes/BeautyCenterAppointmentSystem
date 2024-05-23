@@ -30,7 +30,6 @@ fun LoginPage(
         }
 
         is UiState.Success -> {
-            activity.toast(loginState.data)
             LaunchedEffect(true) {
                 navController.popBackStack()
                 navController.navigate("Home")
