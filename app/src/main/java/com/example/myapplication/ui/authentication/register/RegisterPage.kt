@@ -26,19 +26,21 @@ fun RegisterPage(
         is UiState.Loading -> {
             ApiLoadingState()
         }
+
+        is UiState.Success -> {
+            LaunchedEffect(true) {
+                navController.popBackStack()
+                navController.navigate("Home")
+            }
+        }
+
         is UiState.Failure -> {
             registerState.error?.let {
                 errorTitle.value = it
                 errorDialogState.value = true
             }
         }
-        is UiState.Success -> {
 
-            LaunchedEffect(true) {
-                navController.popBackStack()
-                navController.navigate("Home")
-            }
-        }
         is UiState.Empty -> {}
     }
 
