@@ -41,3 +41,12 @@ fun Activity.hideKeyboard() {
         Toast.makeText(this, this.getText(message), length).show()
         }
         }
+
+/**
+ *Context üzerinden tarih ve saati formatlamak için çeviri
+ *
+ */
+
+fun Context.formatDateTime(date: String, time: String): String {
+        return "$date - $time"
+}
