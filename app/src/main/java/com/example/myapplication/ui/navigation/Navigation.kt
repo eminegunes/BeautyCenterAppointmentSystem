@@ -6,11 +6,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.myapplication.ui.authentication.login.LoginPage
 import com.example.myapplication.ui.authentication.register.RegisterPage
-import com.example.myapplication.ui.main_screens.Home
+import com.example.myapplication.ui.main_screens.HomeScreen
+import com.example.myapplication.ui.main_screens.home.HomePage
 
 @Composable
-fun Navigation(
-    navController: NavHostController
+fun NavGraph(
+    navController: NavHostController,
+    startDestination: String
 ) {
 
     NavHost(
@@ -23,9 +25,8 @@ fun Navigation(
         composable(route = "Signup") {
             RegisterPage(navController)
         }
-
         composable(route = "Home"){
-            Home()
+            HomeScreen()
         }
     }
 }
