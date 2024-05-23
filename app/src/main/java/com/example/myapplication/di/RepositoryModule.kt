@@ -1,5 +1,7 @@
 package com.example.myapplication.di
 
+import com.example.myapplication.domain.repository.AppointmentRepository
+import com.example.myapplication.domain.repository.AppointmentRepositoryImpl
 import com.example.myapplication.domain.repository.AuthRepository
 import com.example.myapplication.domain.repository.AuthRepositoryImpl
 import com.google.firebase.auth.FirebaseAuth
@@ -24,5 +26,13 @@ object RepositoryModule {
         gson: Gson
     ): AuthRepository {
         return AuthRepositoryImpl(auth, database, gson)
+    }
+
+    @Provides
+    @Singleton
+    fun provideBookingRepository(
+        database: FirebaseFirestore,
+    ): AppointmentRepository {
+        return AppointmentRepositoryImpl(database)
     }
 }
