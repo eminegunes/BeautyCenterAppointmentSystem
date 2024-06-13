@@ -1,7 +1,6 @@
 package com.example.myapplication.ui.authentication.login
 
 import android.app.Activity
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,7 +16,7 @@ import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -26,13 +25,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import com.example.myapplication.ui.authentication.component.BottomComponent
 import com.example.myapplication.ui.authentication.component.HeadingTextComponent
 import com.example.myapplication.ui.authentication.component.MyTextFieldComponent
@@ -55,97 +51,100 @@ fun LoginScreen(
     val rememberMeState = remember { mutableStateOf(false) }
     val passwordVisible = rememberSaveable { mutableStateOf(false) }
 
-    Column(
-        modifier = Modifier.fillMaxSize()
-            .padding(horizontal = 10.dp, vertical = 10.dp)
-    ) {
-        Column {
-            HeadingTextComponent(value = "Hoş Geldiniz")
-        }
-        Spacer(modifier = Modifier.height(25.dp))
-        Column {
-            MyTextFieldComponent(
-                labelValue = "Email",
-                icon = Icons.Outlined.Email,
-                onValueChange = {
-                    userEmail.value = it
-                },
-                textValue = userEmail.value
-
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            PasswordTextFieldComponent(
-                labelValue = "Şifre",
-                icon = Icons.Outlined.Lock,
-                onValueChange = {
-                    password.value = it
-                },
-                textValue = password.value
-            )
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+    Scaffold { it->
+        Column(
+            modifier = Modifier.fillMaxSize().padding(it)
+                .padding(horizontal = 10.dp, vertical = 10.dp)
         ) {
-            Row(
-                modifier = Modifier.wrapContentWidth(),
-                horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                RadioButton(
-                    selected = rememberMeState.value,
-                    onClick = {
-                        rememberMeState.value = !rememberMeState.value
+            Column {
+                HeadingTextComponent(value = "Hoş Geldiniz")
+            }
+            Spacer(modifier = Modifier.height(25.dp))
+            Column {
+                MyTextFieldComponent(
+                    labelValue = "Email",
+                    icon = Icons.Outlined.Email,
+                    onValueChange = {
+                        userEmail.value = it
                     },
-                    colors = RadioButtonDefaults.colors(selectedColor = Secondary)
-                )
+                    textValue = userEmail.value
 
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                PasswordTextFieldComponent(
+                    labelValue = "Şifre",
+                    icon = Icons.Outlined.Lock,
+                    onValueChange = {
+                        password.value = it
+                    },
+                    textValue = password.value
+                )
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Row(
+                    modifier = Modifier.wrapContentWidth(),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    RadioButton(
+                        selected = rememberMeState.value,
+                        onClick = {
+                            rememberMeState.value = !rememberMeState.value
+                        },
+                        colors = RadioButtonDefaults.colors(selectedColor = Secondary)
+                    )
+
+                    Text(
+                        text = "Beni Hatırla",
+                        fontSize = 14.sp,
+                        modifier = Modifier
+                            .wrapContentWidth()
+                            .clickable {
+                                rememberMeState.value = !rememberMeState.value
+                            }
+                    )
+                }
                 Text(
-                    text = "Beni Hatırla",
+                    text = "Şifremi Unutum",
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                     fontSize = 14.sp,
                     modifier = Modifier
+                        .padding(start = 5.dp)
                         .wrapContentWidth()
                         .clickable {
-                            rememberMeState.value = !rememberMeState.value
+                            forgotPasswordDialogState.value = true;
                         }
                 )
             }
-            Text(
-                text = "Şifremi Unutum",
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                fontSize = 14.sp,
-                modifier = Modifier
-                    .padding(start = 5.dp)
-                    .wrapContentWidth()
-                    .clickable {
-                        forgotPasswordDialogState.value = true;
+            BottomComponent(
+                textQuery = "Hesabınız yok mu? ",
+                textClickable = "Kayıt ol",
+                action = "Giriş Yap",
+                navController = navController,
+                onButtonClick = {
+                    if (viewModel.checkEmailAndPasswordState(
+                            email = userEmail.value,
+                            password = password.value,
+                        )
+                    ) {
+                        viewModel.login(
+                            email = userEmail.value,
+                            password = password.value,
+                            rememberMeState = rememberMeState.value
+                        )
+                    } else {
+                        activity.toast("Bilgiler uyuşmuyor")
                     }
+                }
             )
         }
-        BottomComponent(
-            textQuery = "Hesabınız yok mu? ",
-            textClickable = "Kayıt ol",
-            action = "Giriş Yap",
-            navController = navController,
-            onButtonClick = {
-                if (viewModel.checkEmailAndPasswordState(
-                        email = userEmail.value,
-                        password = password.value,
-                    )
-                ) {
-                    viewModel.login(
-                        email = userEmail.value,
-                        password = password.value,
-                        rememberMeState = rememberMeState.value
-                    )
-                } else {
-                    activity.toast("Bilgiler uyuşmuyor")
-                }
-            }
-        )
+
     }
 }

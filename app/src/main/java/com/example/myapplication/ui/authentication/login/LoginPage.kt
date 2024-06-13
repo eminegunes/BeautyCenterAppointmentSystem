@@ -10,6 +10,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.myapplication.domain.util.UiState
 import com.example.myapplication.ui.authentication.component.ApiLoadingState
+import com.example.myapplication.ui.navigation.BottomBarScreen
+import com.example.myapplication.ui.navigation.Screen
 import com.example.myapplication.util.extension.toast
 
 @Composable
@@ -32,7 +34,7 @@ fun LoginPage(
         is UiState.Success -> {
             LaunchedEffect(true) {
                 navController.popBackStack()
-                navController.navigate("Home")
+                navController.navigate(Screen.Options.route)
             }
         }
 

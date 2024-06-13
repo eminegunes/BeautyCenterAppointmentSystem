@@ -53,6 +53,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import com.example.myapplication.ui.navigation.Screen
 import com.example.myapplication.ui.theme.AccentColor
 import com.example.myapplication.ui.theme.BgColor
 import com.example.myapplication.ui.theme.GrayColor
@@ -313,9 +314,9 @@ fun AccountQueryComponent(
         annonatedString.getStringAnnotations(it, it)
             .firstOrNull()?.also { annonation ->
                 if (annonation.item == "Giriş yap") {
-                    navController.navigate("Login")
+                    navController.navigate(Screen.Login.route)
                 } else if (annonation.item == "Kayıt ol") {
-                    navController.navigate("Signup")
+                    navController.navigate(Screen.Register.route)
                 }
             }
     })

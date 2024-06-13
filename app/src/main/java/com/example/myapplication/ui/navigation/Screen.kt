@@ -7,21 +7,21 @@ import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class Screen(val route: String) {
-    object OnBoarding : Screen(route = "welcome_screen")
-    object Home : Screen(route = "home_screen")
-    object Register : Screen(route = "register_screen")
-    object Login : Screen(route = "login_screen")
+    data object Options : Screen(route = "welcome_screen")
+    data object Home : Screen(route = "home_screen_route/{option}")
+    data object Register : Screen(route = "register_screen")
+    data object Login : Screen(route = "login_screen")
 }
 
 sealed class BottomBarScreen(val icon: ImageVector, val route: String) {
-    object Home : BottomBarScreen(Icons.Outlined.Home, route = "home_screen")
-    object DateRange : BottomBarScreen(Icons.Outlined.DateRange, route = "dateRange_screen")
-    object Notifications : BottomBarScreen(Icons.Outlined.Notifications, route = "favorite_screen")
+    data object Home : BottomBarScreen(Icons.Outlined.Home, route = "home_screen")
+    data object DateRange : BottomBarScreen(Icons.Outlined.DateRange, route = "dateRange_screen")
+    data object Notifications : BottomBarScreen(Icons.Outlined.Notifications, route = "favorite_screen")
 }
 
 sealed class MainScreen(val route: String) {
-    object EditPerson : MainScreen(route = "edit_person")
-    object DetailBook : MainScreen(route = "detail_book")
-    object CartDetailBook : MainScreen(route = "cart_detail_book")
-    object SettingPerson : MainScreen(route = "setting_person")
+    data object EditPerson : MainScreen(route = "edit_person")
+    data object DetailBook : MainScreen(route = "detail_book")
+    data object CartDetailBook : MainScreen(route = "cart_detail_book")
+    data object SettingPerson : MainScreen(route = "setting_person")
 }

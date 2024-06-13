@@ -46,86 +46,88 @@ fun RegisterScreen(
     val tel = remember { mutableStateOf("") }
     val mail = remember { mutableStateOf("") }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize().padding(horizontal = 10.dp, vertical = 10.dp)
-    ) {
-        HeadingTextComponent(value = "Üyelik oluştur")
-        Spacer(modifier = Modifier.height(25.dp))
+    Scaffold {it ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize().padding(it).padding(horizontal = 10.dp, vertical = 10.dp)
+        ) {
+            HeadingTextComponent(value = "Üyelik oluştur")
+            Spacer(modifier = Modifier.height(25.dp))
 
-        Column {
-            MyTextFieldComponent(
-                labelValue = "İsim",
-                icon = Icons.Outlined.Person,
-                textValue = name.value,
-                onValueChange = {
-                    name.value = it
-                }
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            MyTextFieldComponent(
-                labelValue = "Soyad",
-                icon = Icons.Outlined.Person,
-                textValue = surname.value,
-                onValueChange = {
-                    surname.value = it
-                }
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            MyTextFieldComponent(
-                labelValue = "Email",
-                icon = Icons.Outlined.Email,
-                textValue = mail.value,
-                onValueChange = {
-                    mail.value = it
-                }
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            MyTextFieldComponent(
-                labelValue = "Telefon",
-                icon = Icons.Outlined.Phone,
-                textValue = tel.value,
-                onValueChange = {
-                    tel.value = it
-                }
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            PasswordTextFieldComponent(
-                labelValue = "Sifre",
-                icon = Icons.Outlined.Lock,
-                textValue = password.value,
-                onValueChange = {
-                    password.value = it
-                }
-            )
-            CheckboxComponent()
-
-            BottomComponent(
-                textQuery = "Zaten bir hesabınız var mı? ",
-                textClickable = "Giriş yap",
-                action = "Kayıt Ol",
-                navController = navController,
-                onButtonClick = {
-                    if (viewModel.checkEmailPasswordNameState(
-                            name = name.value,
-                            email = mail.value,
-                            password = password.value,
-                            surname = surname.value,
-                            tel = tel.value
-                        )
-                    ) {
-                        viewModel.register(
-                            email = mail.value,
-                            password = password.value,
-                            name = name.value,
-                            surname = surname.value,
-                            tel = tel.value
-                        )
-                    } else {
-                        activity.toast("Bilgiler uyuşmuyor ya da şartları kabul etmediniz")
+            Column {
+                MyTextFieldComponent(
+                    labelValue = "İsim",
+                    icon = Icons.Outlined.Person,
+                    textValue = name.value,
+                    onValueChange = {
+                        name.value = it
                     }
-                }
-            )
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                MyTextFieldComponent(
+                    labelValue = "Soyad",
+                    icon = Icons.Outlined.Person,
+                    textValue = surname.value,
+                    onValueChange = {
+                        surname.value = it
+                    }
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                MyTextFieldComponent(
+                    labelValue = "Email",
+                    icon = Icons.Outlined.Email,
+                    textValue = mail.value,
+                    onValueChange = {
+                        mail.value = it
+                    }
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                MyTextFieldComponent(
+                    labelValue = "Telefon",
+                    icon = Icons.Outlined.Phone,
+                    textValue = tel.value,
+                    onValueChange = {
+                        tel.value = it
+                    }
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                PasswordTextFieldComponent(
+                    labelValue = "Sifre",
+                    icon = Icons.Outlined.Lock,
+                    textValue = password.value,
+                    onValueChange = {
+                        password.value = it
+                    }
+                )
+                CheckboxComponent()
+
+                BottomComponent(
+                    textQuery = "Zaten bir hesabınız var mı? ",
+                    textClickable = "Giriş yap",
+                    action = "Kayıt Ol",
+                    navController = navController,
+                    onButtonClick = {
+                        if (viewModel.checkEmailPasswordNameState(
+                                name = name.value,
+                                email = mail.value,
+                                password = password.value,
+                                surname = surname.value,
+                                tel = tel.value
+                            )
+                        ) {
+                            viewModel.register(
+                                email = mail.value,
+                                password = password.value,
+                                name = name.value,
+                                surname = surname.value,
+                                tel = tel.value
+                            )
+                        } else {
+                            activity.toast("Bilgiler uyuşmuyor ya da şartları kabul etmediniz")
+                        }
+                    }
+                )
+            }
         }
     }
 }

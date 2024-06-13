@@ -1,5 +1,7 @@
 package com.example.myapplication.util.pref
 
+import com.example.myapplication.ui.main_screens.main.OptionsEnum
+
 object Prefs {
     private val pref: Pref = HawkImpl
 
@@ -12,6 +14,7 @@ object Prefs {
     private const val REMEMBER_ME_STATE = "remember_me_state"
     private const val USER_SESSION = "user_session"
     private const val USER_ID = "user_session"
+    private const val USER_OPTION = "user_option"
 
     fun rememberMeState(): Boolean {
         return pref.get(REMEMBER_ME_STATE, false)
@@ -37,5 +40,13 @@ object Prefs {
 
     fun setUserId(user: String?) {
         pref.put(USER_ID, user)
+    }
+
+    fun getUserOption(): OptionsEnum {
+        return pref.get(USER_OPTION, OptionsEnum.HAIRDRESSER)
+    }
+
+    fun setUserOption(option: OptionsEnum?) {
+        pref.put(USER_OPTION, option)
     }
 }

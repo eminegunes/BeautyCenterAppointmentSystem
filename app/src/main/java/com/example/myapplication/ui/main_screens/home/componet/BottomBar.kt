@@ -11,13 +11,13 @@ import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.myapplication.ui.navigation.BottomBarScreen
+import com.example.myapplication.ui.theme.BottomBack
 
 @Composable
 fun BottomBar(
@@ -27,8 +27,8 @@ fun BottomBar(
         BottomBarScreen.Home, BottomBarScreen.Notifications, BottomBarScreen.DateRange
     )
     BottomNavigation(
-        backgroundColor = Color.Cyan,
-        contentColor = Color.Black
+        backgroundColor = BottomBack,
+        contentColor = Color.Black,
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
@@ -52,7 +52,7 @@ fun RowScope.AddItem(
     BottomNavigationItem(
 
         icon = {
-            screen.icon
+            Icon(imageVector = screen.icon, contentDescription = "" )
         },
         selected = currentDestination?.hierarchy?.any {
             it.route == screen.route

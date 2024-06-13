@@ -7,8 +7,9 @@ import kotlinx.parcelize.Parcelize
 
 data class Appointment(
     var id: String = "",
+    val customerId:String = "",
     val customerName: String = "",
+    val doctorName:String = "",
     val date: String = "",
-    val time: String = "",
     val note: String = ""
 ): Parcelable

@@ -9,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import androidx.compose.runtime.State
 import com.example.myapplication.domain.model.Appointment
+import kotlin.random.Random
 
 
 @HiltViewModel
@@ -75,6 +76,18 @@ class HomeViewModel @Inject constructor(
             _appointmentStatus.value = it
         }
         getAppointment()
+    }
+
+    fun getImageUrl(
+        size:Int
+    ):List<String>{
+        val list = mutableListOf<String>()
+        for (i in 0 until size) {
+            val gender = if (i % 2 == 0) "women" else "men"
+            val imageUrlString = "https://randomuser.me/api/portraits/med/$gender/${Random.nextInt(1, 100)}.jpg"
+            list.add(imageUrlString)
+        }
+        return list
     }
 
 }
