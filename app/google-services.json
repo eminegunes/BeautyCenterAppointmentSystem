@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "174801002992",
+    "project_id": "beautycenterproject-88dd8",
+    "storage_bucket": "beautycenterproject-88dd8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174801002992:android:5fd5f19c6248ce75b8fd35",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5VCj3FQ_MCiWRCHQ7mX3JDZMTd1uSo3c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
