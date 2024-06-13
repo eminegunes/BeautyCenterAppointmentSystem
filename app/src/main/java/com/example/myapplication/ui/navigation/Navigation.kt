@@ -6,26 +6,52 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.myapplication.ui.authentication.login.LoginPage
 import com.example.myapplication.ui.authentication.register.RegisterPage
-import com.example.myapplication.ui.main_screens.Home
+import com.example.myapplication.ui.main_screens.HomeMainScreen
+import com.example.myapplication.ui.main_screens.booking.BookingPage
+import com.example.myapplication.ui.main_screens.booking.BookingScreen
+import com.example.myapplication.ui.main_screens.home.HomePage
+import com.example.myapplication.ui.main_screens.main.OptionsEnum
+import com.example.myapplication.ui.main_screens.main.OptionsScreen
+import com.example.myapplication.ui.main_screens.notifications.NotificationsPage
 
 @Composable
-fun Navigation(
-    navController: NavHostController
+fun NavGraph(
+    navController: NavHostController,
+    startDestination: String
 ) {
 
     NavHost(
         navController = navController,
-        startDestination = "Login"
+        startDestination = startDestination
     ) {
-        composable(route = "Login") {
+        composable(route = Screen.Login.route) {
             LoginPage(navController)
         }
-        composable(route = "Signup") {
-            RegisterPage(navController)
+
+        composable(route = Screen.Options.route){
+            OptionsScreen(navController)
         }
 
-        composable(route = "Home"){
-            Home()
+        composable(route = Screen.Register.route) {
+            RegisterPage(navController)
+        }
+        composable(
+            route = Screen.Home.route,
+            ){
+
+            HomeMainScreen()
+        }
+
+        composable(route = BottomBarScreen.DateRange.route){
+            BookingPage(navController)
+        }
+
+        composable(route = BottomBarScreen.Notifications.route){
+            NotificationsPage()
+        }
+        
+        composable(route =BottomBarScreen.Home.route){
+            HomePage(navController = navController)
         }
     }
 }

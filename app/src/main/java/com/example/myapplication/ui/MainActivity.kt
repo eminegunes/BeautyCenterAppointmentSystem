@@ -3,9 +3,10 @@ package com.example.myapplication.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.myapplication.ui.authentication.main_screen.AuthMainScreen
+import androidx.navigation.compose.rememberNavController
+import com.example.myapplication.ui.navigation.BottomBarScreen
+import com.example.myapplication.ui.navigation.NavGraph
+import com.example.myapplication.ui.navigation.Screen
 import com.example.myapplication.ui.theme.MyAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,10 +16,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyAppTheme {
-                AuthMainScreen()
+                val navController = rememberNavController()
+                NavGraph(
+                    navController = navController,
+                    startDestination = Screen.Login.route
+                )
             }
         }
     }
+
 }
 
 

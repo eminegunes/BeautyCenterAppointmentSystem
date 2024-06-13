@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.authentication.register
+package com.example.myapplication.ui.main_screens.home
 
 import android.app.Activity
 import androidx.compose.runtime.Composable
@@ -8,45 +8,65 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.myapplication.domain.model.Appointment
 import com.example.myapplication.domain.util.UiState
 import com.example.myapplication.ui.authentication.component.ApiLoadingState
-import com.example.myapplication.ui.navigation.Screen
+import com.example.myapplication.ui.authentication.register.RegisterScreen
+import com.example.myapplication.ui.main_screens.main.OptionsEnum
+import com.example.myapplication.util.pref.Prefs
 
 @Composable
-fun RegisterPage(
+fun HomePage(
     navController: NavController,
-    viewModel: RegisterViewModel = hiltViewModel()
+
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
-    val registerState = viewModel.registerState.value
+    val homeState = viewModel.appointmentMarkState.value
+
     val errorDialogState = remember { mutableStateOf(false) }
+
+    val statusIsLoading = remember { mutableStateOf(false) }
+
+    var data: List<Appointment> = listOf()
+
     val errorTitle = remember { mutableStateOf("") }
+
+    val userId = remember { mutableStateOf("") }
+
     val activity = LocalContext.current as Activity
 
 
-    when (registerState) {
+    when (homeState) {
         is UiState.Loading -> {
+
+            statusIsLoading.value = true
             ApiLoadingState()
         }
 
         is UiState.Success -> {
-            LaunchedEffect(true) {
-                navController.popBackStack()
-                navController.navigate(Screen.Options.route)
-            }
+            statusIsLoading.value = false
+            data = homeState.data
+            userId.value = Prefs.getUserId()
         }
 
         is UiState.Failure -> {
-            registerState.error?.let {
+            statusIsLoading.value = false
+            homeState.error?.let {
                 errorTitle.value = it
                 errorDialogState.value = true
             }
         }
 
-        is UiState.Empty -> {}
+        is UiState.Empty -> {
+            statusIsLoading.value = false
+        }
     }
 
-    RegisterScreen(
+    HomeScreen(
         viewModel = viewModel,
+        data = data,
+        isLoading = statusIsLoading,
+        userId = userId.value,
         navController = navController,
         errorDialogState = errorDialogState,
         errorTitle = errorTitle,

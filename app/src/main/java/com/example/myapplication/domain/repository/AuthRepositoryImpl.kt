@@ -104,6 +104,7 @@ class AuthRepositoryImpl(
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     val user = it.result.toObject(User::class.java)
+
                     if (isLogin) {
                         if (rememberMeState) {
                             Prefs.setRememberMeState(true)
@@ -113,6 +114,7 @@ class AuthRepositoryImpl(
                     } else {
                         Prefs.setRememberMeState(true)
                     }
+                    Prefs.setUserId(user?.id)
                     Prefs.setUserSession(gson.toJson(user))
                     result.invoke(user)
                 } else {
